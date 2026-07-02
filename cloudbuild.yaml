@@ -1,0 +1,16 @@
+steps:
+  - name: 'maven:3.9.9-eclipse-temurin-21'
+    entrypoint: 'mvn'
+    args: ['clean', 'package']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'europe-west1-docker.pkg.dev/cc26projm68201/sponserdonkey-repo/sponserdonkey:v1',
+        '.'
+      ]
+
+images:
+  - 'europe-west1-docker.pkg.dev/cc26projm68201/sponserdonkey-repo/sponserdonkey:v1'
